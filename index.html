@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Game</title>
+
+<!-- Bootstrap CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<!-- Custom CSS Link -->
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Header for High Score Button & Timer -->
+    <h3 class="d-flex justify-content-between p-3">
+        <button class="btn btn-lrg btn-success" id="high-score-btn">View High Scores</button>
+        <p id="timer">Timer: </p></h3>
+
+    <!-- Welcome Screen -->
+    <section class="text-center" id="welcome">
+        <h1>Coding Quiz Challenge</h1>
+        <h4>Try to answer the following code-related questions within the time limit.
+        Incorrect answers will penalize your time by 10 seconds!</h4>
+        <button class="btn btn-lg btn-primary" id="start-btn">Start Game</button>
+    </section>
+
+    <!-- Section for Question & Answer Buttons & Feedback -->
+    <section class="text-center" id="game-section">
+        <h1 id="questions">Q</h1>
+        <div class="d-grid gap-2 col-6 mx-auto" id="answers">
+            <button class="btn btn-lg btn-primary m-4" id="a">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quidem nobis debitis odio, in provident iste pariatur sint, vel, qui at et nostrum hic voluptatibus ipsum voluptate eligendi? Voluptate provident ut architecto repellendus repellat omnis quibusdam, ipsam laudantium autem eos dolores, voluptatem earum deleniti possimus sit porro! Repellendus reprehenderit ducimus facere?</button>
+            <button class="btn btn-lg btn-primary m-4" id="b">B</button>
+            <button class="btn btn-lg btn-primary m-4" id="c">C</button>
+            <button class="btn btn-lg btn-primary m-4" id="d">D</button>
+        </div>
+        <div id="answer-feedback"></div>
+    </section>
+    <!-- Section for End of Game -->
+    <section class="text-center" id="end-game-screen">
+        <h1>Game Over</h1>
+        <h3 id="score-text"></h3>
+        <h3>Enter Initials:</h3><input type="text" id="initials-input">
+        <button class="btn btn-lg btn-primary" id="score-submit">Submit</button>
+    </section>
+    
+    
+    <!-- Section for High Scores -->
+    <section class="text-center" id="scores-section">
+        <h1>High Scores List</h1>
+        <ul class="list-group list-group-flush" id="high-scores-list"></ul>
+        <button class="btn btn-lg btn-danger">Back</button>
+    </section>
+
+    <!-- JavaScript Library Links -->
+    <!-- jQuery Import -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+    <!-- JS Link -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
