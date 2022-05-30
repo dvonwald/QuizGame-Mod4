@@ -145,7 +145,7 @@ function highScoreSubmit() {
     showScores();
 }
 
-// Append High Scores as List Items 
+// Engage Local Storage & Append High Scores as List Items 
 function appendScores() {
     var highScoresArray = JSON.parse(localStorage.getItem('highScores')) || [];
     console.log(highScoresArray)
@@ -162,17 +162,15 @@ function appendScores() {
     }
 }
 
-// End Game
+// End Game Screen
 function endGame() {
     gameSec.hide()
     endGameScreen.show()
     scoreText.text("Your final score is: " + score)
 }
 
-// Render High Scores
+// Show High Scores
 scoresBtn.on('click', showScores)
-
-backBtn.on('click', initialize)
 
 function showScores () {
     //Ensure Welcome Section is hidden
@@ -187,6 +185,8 @@ function showScores () {
     scoresBtn.hide();
     timerEl.hide();
 }
+//Back to initialize/welcome screen when clicking back button on High Scores page
+backBtn.on('click', initialize)
 
 //Logging user's answer ID to the correct answer and changing current index 
 $(answersDiv.children()).on('click', function() {
