@@ -5,7 +5,6 @@ var startBtn = $("#start-btn")
 var welcomeSec = $("#welcome")
 var scoresSec = $('#scores-section')
 var gameSec = $('#game-section')
-// var questionsDiv = $('#questions')
 var answersDiv = $('#answers')
 var feedbackDiv = $('#answerFeedback')
 var questionText = $('#questions')
@@ -19,6 +18,7 @@ var scoreText = $('#score-text')
 var initials = $('#initials-input')
 var scoreSubmit = $('#score-submit')
 var highScoresList = $('#high-scores-list')
+var backBtn = $('#back-button')
 
 //Question & Answer Object Array
 var quizArray = [
@@ -31,57 +31,51 @@ var quizArray = [
         correct: "b"
     },
     {
-        question: 'Question 2: ',
-        a: 'a',
-        b: 'b',
-        c: 'c',
-        d: 'd',
+        question: 'Question 2: What does DOM stand for?',
+        a: 'Date Of Manufacture',
+        b: 'Document Oriented Model',
+        c: 'Document Orientation Markup',
+        d: 'Document Object Model',
         correct: 'd'
     },
     {
-        question: 'Question 3: ',
-        a: 'a',
-        b: 'b',
-        c: 'c',
-        d: 'd',
-        correct: 'd'
+        question: 'Question 3: What does the $ character denote in JavaScript?',
+        a: 'Use of jQuery Selector',
+        b: 'CSS Element',
+        c: 'Escape Character',
+        d: 'Wild character',
+        correct: 'a'
     },
     {
-        question: 'Question 4: ',
-        a: 'a',
-        b: 'b',
-        c: 'c',
-        d: 'd',
-        correct: 'd'
+        question: 'Question 4: What does API stand for?',
+        a: 'Application Parsing Interface',
+        b: 'Application Programming Interaction',
+        c: 'Application Programming Interface',
+        d: 'Academic Performance Index',
+        correct: 'c'
     },
     {
-        question: 'Question 5: ',
-        a: 'a',
-        b: 'b',
-        c: 'c',
-        d: 'd',
-        correct: 'd'
+        question: 'Question 5: What are the curly braces used for in JavaScript?',
+        a: 'To denote an object',
+        b: 'To call a function',
+        c: 'To denote an ID',
+        d: 'To set a variable',
+        correct: 'a'
     },
     {
-        question: 'Question 6: ',
-        a: 'a',
-        b: 'b',
-        c: 'c',
-        d: 'd',
+        question: 'Question 6: What characters do you use for an array?',
+        a: 'Parenthesis ()',
+        b: 'Curly braces {}',
+        c: 'Quotes "" ',
+        d: 'Brackets []',
         correct: 'd'
     }
 ]
 
-
 // Game Variables
-var timer = 30;
-currentIndex = 0;
-var score = 0
-// var highScoresList = []
-// var inputInitials = ""
-
-// console.log(quizArray.length)
-
+// var timer = 30;
+// currentIndex = 0;
+// var score = 0
 
 //Page when user first loads
 initialize()
@@ -92,6 +86,12 @@ function initialize() {
     scoresSec.hide()
     //Hide End Game Screen
     endGameScreen.hide()
+    timer = 30;
+    timerEl.show()
+    scoresBtn.show()
+    welcomeSec.show()
+    currentIndex = 0
+    score = 0
 }
 
 
@@ -128,13 +128,6 @@ function renderQuiz() {
 
 }
 
-// Answer Buttons
-
-
-//Timer function
-
-// Penalty Function
-
 // Store High Scores in Local Storage
 scoreSubmit.on('click', highScoreSubmit);
 
@@ -148,17 +141,17 @@ function highScoreSubmit() {
     }
     highScoresArray.push(highScoreObj)  // pushing the player object to the array
     localStorage.setItem('highScores', JSON.stringify(highScoresArray)) // stringifying the array for localstorage
-    showScores();
-    // console.log(highScoresArray)
-    // console.log(highScoreObj)
-    // console.log(typeof localStorage.highScores)
     appendScores();
+    showScores();
 }
 
 // Append High Scores as List Items 
 function appendScores() {
     var highScoresArray = JSON.parse(localStorage.getItem('highScores')) || [];
     console.log(highScoresArray)
+    highScoresList.empty();
+    if(highScoresList.length === 0)
+        return highScoresList.text("No Scores Yet!")
     for (var i = 0; i < highScoresArray.length; i++) {
         var scoreObj = highScoresArray[i];
         var newLi = $("<li>", {
@@ -168,7 +161,6 @@ function appendScores() {
         highScoresList.append(newLi)
     }
 }
-
 
 // End Game
 function endGame() {
@@ -180,6 +172,8 @@ function endGame() {
 // Render High Scores
 scoresBtn.on('click', showScores)
 
+backBtn.on('click', initialize)
+
 function showScores () {
     //Ensure Welcome Section is hidden
     welcomeSec.hide();
@@ -188,10 +182,12 @@ function showScores () {
     //Hide End Game Screen
     endGameScreen.hide()
     // Show High Scores List
+    appendScores();
     scoresSec.show();
-    
+    scoresBtn.hide();
+    timerEl.hide();
 }
-// 
+
 //Logging user's answer ID to the correct answer and changing current index 
 $(answersDiv.children()).on('click', function() {
     var userAnswer = (this.id)
@@ -211,9 +207,3 @@ $(answersDiv.children()).on('click', function() {
         renderQuiz();
     }
 })
-
-
-
-// var userAnswer = $('')
-
-// quizArray[currentIndex].correct
