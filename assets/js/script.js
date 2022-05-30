@@ -24,9 +24,9 @@ var backBtn = $('#back-button')
 var quizArray = [
     {
         question: 'Question 1: Who invented JavaScript?',
-        a: "Mickey Mouse",
+        a: "Bill Gates",
         b: "Brendan Eich",
-        c: "Earthworm Jim",
+        c: "Alan Turing",
         d: "John Resig",
         correct: "b"
     },
@@ -198,9 +198,7 @@ $(answersDiv.children()).on('click', function() {
         timer = timer - 10;
         // score--
     }
-    // console.log("Score: " + score)
     currentIndex++;
-    // console.log(currentIndex);
     if (currentIndex == quizArray.length) {
         endGame();
     } else {
