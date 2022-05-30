@@ -79,7 +79,7 @@ currentIndex = 0;
 // console.log(quizArray[5])
 var score = 0
 var highScoresList = []
-var currentScoreLi = ""
+// var inputInitials = ""
 
 console.log(quizArray.length)
 
@@ -143,12 +143,19 @@ function renderQuiz() {
 scoreSubmit.on('click', highScoreSubmit);
 
 function highScoreSubmit() {
-    currentScoreLi = $(initials).on('click').val();
-    $('input[type="text"]').val("");
-    var highScoreString = (currentScoreLi + '--' + score)
-    highScoresList.push(highScoreString)
-    console.log(highScoresList)
-    window.localStorage.setItem('player', highScoreString)
+    inputInitials = $(initials).on('click').val(); // capture user submitted initials
+    $('input[type="text"]').val(""); // clear out form after submit
+    var highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    var highScoreInput = {
+        player: inputInitials,
+        playerScore: score,
+    }
+    highScores.push(highScoreInput)
+    localStorage.setItem('player', JSON.stringify(highScores))
+    // var highScoreArray = (currentScoreLi + '--' + score)
+    // highScoresList.push(highScoreArray)
+//     console.log(highScoresList)
+//     window.localStorage.setItem('player', highScoreString)
 }
 
 // Append High Scores as List Items 
@@ -158,6 +165,12 @@ function endGame() {
     gameSec.hide()
     endGameScreen.show()
     scoreText.text("Your final score is: " + score)
+
+    // inputInitials = $(initials).on('click').val();
+    // $('input[type="text"]').val("");
+    // highScoresList.push(highScoreInput)
+    // localStorage.setItem('highScore', JSON.stringify(highScoresList))
+
 }
 
 // Render High Scores
